@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng nhập - Ví Nhà</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-dim": "#edd5cb",
+                        "surface": "#fff8f6",
+                        "secondary-fixed": "#eae1da",
+                        "primary-container": "#f97316",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-surface": "#251913",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-container": "#00a2f4",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#6a635e",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#1f1b17",
+                        "on-primary-container": "#582200",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container": "#ffeae0",
+                        "outline": "#8c7164",
+                        "on-primary-fixed": "#341100",
+                        "inverse-surface": "#3c2d26",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#f6ded3",
+                        "surface-container-low": "#fff1eb",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#fce3d9",
+                        "secondary-fixed-dim": "#cec5bf",
+                        "secondary-container": "#eae1da",
+                        "on-secondary-fixed-variant": "#4b4641",
+                        "surface-bright": "#fff8f6",
+                        "secondary": "#645d58",
+                        "surface-variant": "#f6ded3"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    spacing: {
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "lg": "24px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "price-display": ["28px", { lineHeight: "34px", letterSpacing: "0.02em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e0c0b1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- Atmospheric Background Effects (Modern-Tactile warmth) -->
+<div class="absolute top-[-15%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-primary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-[-15%] right-[-5%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-surface-dim/40 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Main Content Container (Suppressed Navigation Layout) -->
+<main class="relative z-10 w-full max-w-[480px] px-container-margin py-xl">
+<!-- Login Card -->
+<div class="bg-surface-container-lowest rounded-3xl shadow-[0_16px_40px_rgba(249,115,22,0.08)] border border-outline-variant/30 overflow-hidden flex flex-col">
+<!-- Abstract Friendly Illustration -->
+<div class="w-full h-[180px] bg-surface-container-low relative">
+<img alt="Ví Nhà Illustration" class="w-full h-full object-cover opacity-90" data-alt="A striking, 3D abstract digital illustration designed for a modern fintech app's login screen. The composition features soft, tactile geometric shapes like floating spheres, interlocking rounded rings, and soft pill shapes arranged in a friendly, balanced cluster. The color palette relies on warm, inviting tones of pastel orange, creamy white, and soft coral, matching a light-mode 'Modern-Tactile' aesthetic. The lighting is bright studio style, casting diffuse, tinted shadows on a pristine background, evoking a sense of financial harmony, trust, and household organization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjXMwXtBkbqiJj1vR1PrggxLqyqvEeGSr9Un8hXRNyBnZKMaYt7aNBAehqNC0cnUK1IHpAiWmnwSI96UHrgahecyw4IsCbkhKsOBZ93xzjCH6mo94aYX4oObde_GTcm1edrodo12fZ_ZOtcRMxHdwPudQHVFRcgksK2HtxF8EomcfYjFJVIfqXw4dTBcZcYgu4_xLZ3B33KRuQKI2MV_VCCAt-uJFd3jl8JoCUdGwvunl2FA1t-B3TEvrDZ1CuzJbQ_awtsr3IZHtK"/>
+<!-- Soft gradient overlay to blend image into card -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+</div>
+<!-- Card Content Body -->
+<div class="px-xl pb-xl pt-sm flex flex-col gap-lg">
+<!-- Brand Identity -->
+<div class="flex flex-col items-center justify-center text-center">
+<div class="flex items-center justify-center gap-xs mb-1">
+<span class="material-symbols-outlined text-primary-container text-[32px]" style="font-variation-settings: 'FILL' 1;">home_app_logo</span>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">
+                            Ví Nhà
+                        </h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Quản lý chi tiêu gia đình thông minh
+                    </p>
+</div>
+<!-- Login Form -->
+<form class="flex flex-col gap-md w-full" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">
+                                mail
+                            </span>
+<input class="w-full bg-surface border border-outline-variant rounded-xl py-sm pl-[44px] pr-sm font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary-container/20 outline-none transition-all duration-200" id="email" placeholder="nhap@email.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="password">Mật khẩu</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">
+                                lock
+                            </span>
+<input class="w-full bg-surface border border-outline-variant rounded-xl py-sm pl-[44px] pr-sm font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary-container/20 outline-none transition-all duration-200" id="password" placeholder="••••••••" type="password"/>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end mt-1">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors" href="#">
+                                Quên mật khẩu?
+                            </a>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="mt-xs w-full rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary font-label-md text-label-md py-sm px-xl shadow-[0_8px_16px_rgba(249,115,22,0.15)] hover:shadow-[0_12px_24px_rgba(249,115,22,0.25)] hover:-translate-y-[1px] active:translate-y-[1px] active:shadow-sm transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+                        Đăng nhập
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-md">
+<div class="flex-1 h-px bg-outline-variant/60"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Hoặc</span>
+<div class="flex-1 h-px bg-outline-variant/60"></div>
+</div>
+<!-- Secondary Action (Google) -->
+<button class="w-full rounded-full bg-surface border border-outline-variant text-on-surface font-label-md text-label-md py-sm px-xl flex items-center justify-center gap-sm hover:bg-surface-container-high hover:border-outline transition-all duration-200 active:scale-[0.98]" type="button">
+<!-- Inline Google SVG -->
+<svg class="w-[20px] h-[20px]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.26H17.92C17.66 15.63 16.88 16.79 15.71 17.57V20.34H19.28C21.36 18.42 22.56 15.6 22.56 12.25Z" fill="#4285F4"></path>
+<path d="M12 23C14.97 23 17.46 22.02 19.28 20.34L15.71 17.57C14.73 18.23 13.48 18.63 12 18.63C9.14 18.63 6.71 16.7 5.84 14.1H2.18V16.94C3.99 20.53 7.7 23 12 23Z" fill="#34A853"></path>
+<path d="M5.84 14.1C5.62 13.44 5.49 12.74 5.49 12C5.49 11.26 5.62 10.56 5.84 9.9V7.06H2.18C1.43 8.55 1 10.22 1 12C1 13.78 1.43 15.45 2.18 16.94L5.84 14.1Z" fill="#FBBC05"></path>
+<path d="M12 5.38C13.62 5.38 15.06 5.94 16.21 7.02L19.36 3.87C17.45 2.09 14.97 1 12 1C7.7 1 3.99 3.47 2.18 7.06L5.84 9.9C6.71 7.3 9.14 5.38 12 5.38Z" fill="#EA4335"></path>
+</svg>
+                    Đăng nhập bằng Google
+                </button>
+</div>
+</div>
+<!-- Footer Action -->
+<p class="text-center font-body-md text-body-md text-on-surface-variant mt-lg">
+            Chưa có tài khoản? 
+            <a class="font-label-md text-label-md text-primary hover:text-primary-container underline-offset-4 hover:underline transition-all" href="#">
+                Đăng ký ngay
+            </a>
+</p>
+</main>
+</body></html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trang Nhà - Ví Nhà</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-dim": "#edd5cb",
+                        "surface": "#fff8f6",
+                        "secondary-fixed": "#eae1da",
+                        "primary-container": "#f97316",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-surface": "#251913",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-container": "#00a2f4",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#6a635e",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#1f1b17",
+                        "on-primary-container": "#582200",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container": "#ffeae0",
+                        "outline": "#8c7164",
+                        "on-primary-fixed": "#341100",
+                        "inverse-surface": "#3c2d26",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#f6ded3",
+                        "surface-container-low": "#fff1eb",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#fce3d9",
+                        "secondary-fixed-dim": "#cec5bf",
+                        "secondary-container": "#eae1da",
+                        "on-secondary-fixed-variant": "#4b4641",
+                        "surface-bright": "#fff8f6",
+                        "secondary": "#645d58",
+                        "surface-variant": "#f6ded3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "price-display": ["28px", {"lineHeight": "34px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.outline-variant');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline');
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex min-h-screen relative w-full">
+<!-- SideNavBar Component (Desktop Only) -->
+<nav class="h-full w-64 fixed left-0 top-0 hidden md:flex flex-col bg-surface shadow-[0_4px_16px_rgba(249,115,22,0.08)] z-40">
+<div class="flex flex-col h-full py-lg px-md">
+<!-- Header Brand -->
+<div class="flex items-center gap-sm mb-xl px-xs">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">wallet</span>
+</div>
+<div>
+<h1 class="font-display-lg text-[24px] leading-tight font-extrabold text-primary">Ví Nhà</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-80">Quản lý chi tiêu gia đình</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 space-y-xs">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary hover:bg-secondary-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-title-md text-title-md">Chi Tiêu Của Tôi</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold bg-primary-container/10 border-r-4 border-primary hover:bg-secondary-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_app_logo</span>
+<span class="font-title-md text-title-md">Nhà</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary hover:bg-secondary-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-title-md text-title-md">Lịch Sử</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary hover:bg-secondary-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-title-md text-title-md">Hồ Sơ</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto space-y-xs pt-lg border-t border-outline-variant/30">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary hover:bg-secondary-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-title-md text-title-md">Cài đặt</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-error hover:bg-error-container/50 transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-title-md text-title-md">Đăng xuất</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 p-lg md:p-xl lg:px-[64px] min-h-screen bg-background">
+<div class="max-w-6xl mx-auto space-y-xl">
+<!-- Page Header: House Info -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-md pb-md border-b border-outline-variant/50">
+<div>
+<div class="flex items-center gap-sm mb-2">
+<span class="material-symbols-outlined text-primary-container text-[32px]" style="font-variation-settings: 'FILL' 1;">roofing</span>
+<h2 class="font-display-lg text-display-lg text-on-surface">Tổ Ấm Hạnh Phúc</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">group</span>
+                            4 Thành viên đang hoạt động
+                        </p>
+</div>
+<button class="inline-flex items-center gap-2 px-xl py-sm bg-primary-container text-on-primary font-title-md text-title-md rounded-full shadow-sm hover:shadow-md hover:bg-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                        Thêm khoản chi
+                    </button>
+</header>
+<!-- Member Grid Section -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface mb-lg">Chi tiêu thành viên (Tháng này)</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md md:gap-lg">
+<!-- Member Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] transition-shadow duration-300 group cursor-pointer">
+<div class="flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full mb-md overflow-hidden ring-4 ring-surface-container group-hover:ring-primary-fixed transition-all">
+<img alt="Avatar Bố" class="w-full h-full object-cover" data-alt="A warm, brightly lit portrait of a smiling middle-aged Vietnamese man wearing a casual light blue shirt. He has short neat hair and a friendly, approachable expression. The background is a soft, out-of-focus modern home interior in warm, light-mode tones. The image evokes a sense of trust and family warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATdfzycF_rwTY7RSjWrPx2VLFNLyfY_Xnv-uvyZp1y75RIE9VXUYmMtjEl-_UWHiTMUrkS4irAmlVjtIRyLwPPEUZn6TbsjbQlR3CmB3yLllrUOLPxU5MlRSss1Z1DWFrcfQEKPZYjtZiGIivJgucTR0GP5BpKkydmKU65Mmt31GHTEZPV-fWB5Lbj_m9ENL_0GcXlANmKaLY30SmPWyR7lp7g0USThxELS8ttF-ErpbP8W0Q-MjFou09YGJCtQHaDSfqhKrFAk7tj"/>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Anh Tuấn</h4>
+<span class="inline-block px-sm py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full mb-md">Bố</span>
+<div class="w-full pt-md border-t border-outline-variant/30 mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Đã chi</p>
+<p class="font-price-display text-price-display text-primary">8.500.000 ₫</p>
+</div>
+</div>
+</div>
+<!-- Member Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] transition-shadow duration-300 group cursor-pointer relative overflow-hidden">
+<!-- Subtle highlight for highest spender -->
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary-fixed/30 rounded-bl-full -z-10"></div>
+<div class="flex flex-col items-center text-center z-10">
+<div class="w-20 h-20 rounded-full mb-md overflow-hidden ring-4 ring-surface-container group-hover:ring-primary-fixed transition-all">
+<img alt="Avatar Mẹ" class="w-full h-full object-cover" data-alt="A vibrant, cheerful portrait of a young Vietnamese woman with shoulder-length dark hair, smiling warmly. She is wearing a soft pastel blouse. The lighting is soft and flattering, creating a high-key, modern aesthetic. The background is mildly blurred, showing subtle hints of a bright, cozy living space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZjN6b3GIwODVk0LbMWDh3MoIvYG78zDsD-gPpIuEVj6Sy50npVl4Rks99mNN3MekSLBeikqvDF-EyfFFqykU94eopSOk6UR-VI7slcSUWQwbb4J6QqR1GX0vBF1LCGwvtEYK3H4o5BKRKqjikydmgZBbaoZnAXKSPL5LKvuMD07XpA30oxpa8DR9PCZ64Yg5pH34yt18WReXNQ--3Cs_GP9LEF3dlezl4fVLrq2DEGSgIYKzKXgHzMZjraRT2gxcppA6njyyEqof"/>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Chị Mai</h4>
+<span class="inline-block px-sm py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full mb-md">Mẹ</span>
+<div class="w-full pt-md border-t border-outline-variant/30 mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Đã chi</p>
+<p class="font-price-display text-price-display text-primary">12.350.000 ₫</p>
+</div>
+</div>
+</div>
+<!-- Member Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] transition-shadow duration-300 group cursor-pointer">
+<div class="flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full mb-md overflow-hidden ring-4 ring-surface-container group-hover:ring-primary-fixed transition-all">
+<img alt="Avatar Con Gái" class="w-full h-full object-cover" data-alt="A bright and lively portrait of a young Vietnamese girl, around 10 years old, with a joyful smile. She wears a casual, colorful t-shirt. The lighting is sunny and optimistic, reflecting a safe, happy childhood. The background is a clean, bright minimalist setting in light-mode tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjc8G0PYLiZQP5E87c-Pn0opXRypGgNYEFgS2pCyOhp_vCEkjqbfgVlntGKQOdW4z1eeJpAQwFO0I3oNxpjbBvpFCxb_9ab37BLGMAkX2sbNthCfWNDUBl17lnLUjK2wsWHrD5vR_rZwWwGW-kpRoPxlZ1kv91L_QjmI6h4Yqzx3JMZp8-hvXZl1sEcQevVU_k44S3KKq0hdTkeJ7Zy0KhAmd-iyU8bHIPBSuOYRtqQ5mB8nGRh5hVHUq7dbneQ8js3xAO9gSo8E7k"/>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Bé Linh</h4>
+<span class="inline-block px-sm py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full mb-md">Con gái</span>
+<div class="w-full pt-md border-t border-outline-variant/30 mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Đã chi</p>
+<p class="font-price-display text-[22px] font-bold text-primary opacity-80">450.000 ₫</p>
+</div>
+</div>
+</div>
+<!-- Member Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] transition-shadow duration-300 group cursor-pointer">
+<div class="flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full mb-md overflow-hidden ring-4 ring-surface-container group-hover:ring-primary-fixed transition-all">
+<img alt="Avatar Con Trai" class="w-full h-full object-cover" data-alt="A playful and friendly portrait of a teenage Vietnamese boy wearing glasses and a simple white hoodie. He has a subtle, confident smile. The environment is well-lit with natural light, emphasizing a clean, contemporary aesthetic appropriate for a modern family app. Warm and inviting mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpknkX4FZFhkxzBplYBwnLWjFxxE23t41ZQD1aKkw3VROgRcSJk5bJCzgxHn1mnhkzdf-j4PUJo-56Ja6UpsH4EoDzl7afcA-uGLWvHylX0p-c0oF9P1OxIZLX6abM7UoaIjTWr0smot9Y-F70ZRpFY5g9mD6BMGMPDWm7kXOLD3ak3UlkYfH0n4ZU-h4B7jqPR7L6Uw84qDfBjXyiV9UzkyEqKlk1W2zptjYz1zXx2_jUuYrG_jMHWrZEd9ZpYNH6xouYurNZi-2x"/>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Bé Bo</h4>
+<span class="inline-block px-sm py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full mb-md">Con trai</span>
+<div class="w-full pt-md border-t border-outline-variant/30 mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Đã chi</p>
+<p class="font-price-display text-[22px] font-bold text-primary opacity-80">820.000 ₫</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Total Family Spending Card -->
+<section class="mt-xl pt-lg border-t border-outline-variant/30">
+<div class="bg-gradient-to-br from-surface-container to-surface-container-high rounded-[24px] p-xl flex flex-col md:flex-row items-center justify-between gap-lg relative overflow-hidden shadow-[0_8px_32px_rgba(249,115,22,0.06)] border border-outline-variant/40">
+<!-- Decorative Abstract Shapes behind text -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-fixed/40 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-10 -bottom-10 w-40 h-40 bg-tertiary-fixed-dim/30 rounded-full blur-2xl pointer-events-none"></div>
+<div class="z-10 flex items-center gap-md">
+<div class="w-16 h-16 rounded-2xl bg-surface-lowest flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Tổng Chi Cả Nhà</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Tháng 10, 2023</p>
+</div>
+</div>
+<div class="z-10 text-right">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Tổng cộng</p>
+<p class="font-display-lg text-display-lg text-primary tracking-tight">22.120.000 <span class="text-[28px]">₫</span></p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
