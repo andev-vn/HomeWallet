@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thêm Chi Tiêu Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e0c0b1; /* outline-variant */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8c7164; /* outline */
+        }
+        
+        /* Hide arrows on number input */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* Auto-resize input hack for the big amount field */
+        .auto-resize-input {
+            width: 1ch;
+            min-width: 1ch;
+            max-width: 100%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-dim": "#edd5cb",
+                        "surface": "#fff8f6",
+                        "secondary-fixed": "#eae1da",
+                        "primary-container": "#f97316",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-surface": "#251913",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-container": "#00a2f4",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#6a635e",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#1f1b17",
+                        "on-primary-container": "#582200",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container": "#ffeae0",
+                        "outline": "#8c7164",
+                        "on-primary-fixed": "#341100",
+                        "inverse-surface": "#3c2d26",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#f6ded3",
+                        "surface-container-low": "#fff1eb",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#fce3d9",
+                        "secondary-fixed-dim": "#cec5bf",
+                        "secondary-container": "#eae1da",
+                        "on-secondary-fixed-variant": "#4b4641",
+                        "surface-bright": "#fff8f6",
+                        "secondary": "#645d58",
+                        "surface-variant": "#f6ded3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "lg": "24px",
+                        "xxl": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "price-display": ["32px", {"lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-xl": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.03em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen w-screen overflow-hidden relative">
+<!-- Mock background content to show the modal overlay effect -->
+<div class="p-xl w-full max-w-7xl mx-auto opacity-30 pointer-events-none grid grid-cols-3 gap-lg">
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+</div>
+<!-- MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/30 backdrop-blur-md p-md transition-opacity duration-300">
+<!-- MODAL CONTAINER -->
+<div class="w-full max-w-[540px] bg-surface-container-lowest rounded-2xl shadow-[0_24px_48px_rgba(249,115,22,0.12)] flex flex-col overflow-hidden transform transition-all scale-100 opacity-100">
+<!-- HEADER -->
+<div class="flex items-center justify-between px-lg py-md border-b border-outline-variant/40 bg-surface-container-lowest z-10 relative">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<h2 class="font-title-md text-title-md text-on-surface">Thêm Chi Tiêu</h2>
+</div>
+<button class="p-xs rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors group outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform duration-300" data-icon="close">close</span>
+</button>
+</div>
+<!-- SCROLLABLE BODY -->
+<div class="flex flex-col overflow-y-auto max-h-[768px]">
+<!-- HERO AMOUNT SECTION -->
+<div class="px-lg py-xxl flex flex-col items-center justify-center bg-gradient-to-b from-surface-container-lowest to-surface-container/30 border-b border-outline-variant/30 relative">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Số tiền đã tiêu</p>
+<div class="flex items-center justify-center group relative cursor-text w-full">
+<div class="flex items-baseline justify-center border-b-2 border-transparent focus-within:border-primary-container transition-colors pb-1 px-4">
+<!-- Using inline JS to resize input based on content for that "huge centered" feel -->
+<input autocomplete="off" autofocus="" class="font-display-lg text-display-lg text-on-surface bg-transparent border-none p-0 text-center focus:ring-0 outline-none w-[220px]" id="amountInput" placeholder="0" type="text" value="250.000"/>
+<span class="font-headline-lg text-headline-lg text-primary ml-2 mb-2 select-none">₫</span>
+</div>
+</div>
+<!-- Subtle decorative glow -->
+<div class="absolute inset-0 bg-primary/5 blur-[80px] rounded-full pointer-events-none -z-10 scale-75"></div>
+</div>
+<!-- CATEGORY GRID -->
+<div class="p-lg border-b border-outline-variant/30">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Danh Mục</h3>
+<button class="font-label-md text-label-md text-tertiary hover:text-tertiary-container transition-colors flex items-center gap-1">
+                            Xem tất cả <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-4 gap-sm">
+<!-- Active Category -->
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-primary-container/15 border-2 border-primary-container cursor-pointer transition-transform active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center mb-xs shadow-sm text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="restaurant" data-weight="fill">restaurant</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface text-center leading-tight">Ăn uống</span>
+</div>
+<!-- Inactive Categories -->
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Di chuyển</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Mua sắm</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="movie">movie</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Giải trí</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Sức khỏe</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Gia đình</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Hóa đơn</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm rounded-xl bg-surface hover:bg-surface-variant border-2 border-transparent cursor-pointer transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mb-xs text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant text-center leading-tight">Khác</span>
+</div>
+</div>
+</div>
+<!-- DETAILS INPUTS -->
+<div class="p-lg flex flex-col gap-md">
+<!-- Date Input -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<input class="block w-full pl-12 pr-md py-4 bg-surface rounded-xl border border-outline-variant focus:border-primary-container focus:ring-4 focus:ring-primary-container/10 outline-none transition-all font-body-md text-body-md text-on-surface cursor-pointer" readonly="" type="text" value="Hôm nay, 24 Tháng 10, 2023"/>
+<div class="absolute inset-y-0 right-0 pr-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Note Input -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notes">notes</span>
+</div>
+<input class="block w-full pl-12 pr-md py-4 bg-surface rounded-xl border border-outline-variant focus:border-primary-container focus:ring-4 focus:ring-primary-container/10 outline-none transition-all font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/60" placeholder="Thêm mô tả chi tiết..." type="text"/>
+</div>
+</div>
+</div>
+<!-- FOOTER ACTION -->
+<div class="p-lg pt-sm bg-surface-container-lowest mt-auto border-t border-outline-variant/20 shadow-[0_-4px_16px_rgba(0,0,0,0.02)]">
+<button class="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-title-md text-title-md shadow-[0_8px_16px_rgba(249,115,22,0.25)] hover:shadow-[0_12px_24px_rgba(249,115,22,0.35)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 outline-none focus:ring-4 focus:ring-primary-container/30 relative overflow-hidden group">
+<span class="material-symbols-outlined relative z-10" data-icon="check_circle">check_circle</span>
+<span class="relative z-10">Lưu Chi Tiêu</span>
+<!-- Button shine effect -->
+<div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite] skew-x-12 z-0"></div>
+</button>
+</div>
+</div>
+</div>
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(200%);
+            }
+        }
+    </style>
+<script>
+        // Simple script to format number input with dots for thousands
+        const amountInput = document.getElementById('amountInput');
+        
+        amountInput.addEventListener('input', function(e) {
+            // Remove non-digit characters
+            let value = this.value.replace(/\D/g, '');
+            
+            // Format with dots
+            if (value !== '') {
+                value = parseInt(value, 10).toLocaleString('vi-VN').replace(/,/g, '.');
+            }
+            
+            this.value = value;
+            
+            // Dynamic width adjustment to keep it centered properly
+            const tempSpan = document.createElement('span');
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.position = 'absolute';
+            tempSpan.style.fontFamily = window.getComputedStyle(this).fontFamily;
+            tempSpan.style.fontSize = window.getComputedStyle(this).fontSize;
+            tempSpan.style.fontWeight = window.getComputedStyle(this).fontWeight;
+            tempSpan.style.letterSpacing = window.getComputedStyle(this).letterSpacing;
+            tempSpan.textContent = this.value || this.placeholder;
+            document.body.appendChild(tempSpan);
+            
+            // Set width with a small buffer, min width 20px, max 100%
+            const newWidth = Math.max(20, tempSpan.getBoundingClientRect().width);
+            this.style.width = newWidth + 'px';
+            
+            document.body.removeChild(tempSpan);
+        });
+
+        // Trigger input event to set initial width
+        amountInput.dispatchEvent(new Event('input'));
+    </script>
+</body></html>

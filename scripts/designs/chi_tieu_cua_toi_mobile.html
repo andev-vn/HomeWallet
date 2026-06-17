@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chi Tiêu Của Tôi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-dim": "#edd5cb",
+                        "surface": "#fff8f6",
+                        "secondary-fixed": "#eae1da",
+                        "primary-container": "#f97316",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-surface": "#251913",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-container": "#00a2f4",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#6a635e",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#1f1b17",
+                        "on-primary-container": "#582200",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container": "#ffeae0",
+                        "outline": "#8c7164",
+                        "on-primary-fixed": "#341100",
+                        "inverse-surface": "#3c2d26",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#f6ded3",
+                        "surface-container-low": "#fff1eb",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#fce3d9",
+                        "secondary-fixed-dim": "#cec5bf",
+                        "secondary-container": "#eae1da",
+                        "on-secondary-fixed-variant": "#4b4641",
+                        "surface-bright": "#fff8f6",
+                        "secondary": "#645d58",
+                        "surface-variant": "#f6ded3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "price-display": ["28px", { "lineHeight": "34px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .material-symbols-fill {
+                font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex">
+<aside class="bg-surface dark:bg-inverse-surface h-full w-64 fixed left-0 top-0 hidden md:flex flex-col shadow-[0_4px_16px_rgba(249,115,22,0.08)] z-40">
+<div class="flex flex-col h-full py-lg px-md">
+<div class="mb-xl px-sm">
+<h1 class="font-display-lg text-display-lg font-extrabold text-primary dark:text-primary-container">Ví Nhà</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Quản lý chi tiêu gia đình</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-primary font-bold bg-primary-container/10 border-r-4 border-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined material-symbols-fill">payments</span>
+<span class="font-body-md text-body-md">Chi Tiêu Của Tôi</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined material-symbols-fill">home_app_logo</span>
+<span class="font-body-md text-body-md">Nhà</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Lịch Sử</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-body-md text-body-md">Hồ Sơ</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant/30">
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Cài đặt</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-secondary-fixed-variant hover:text-primary active:scale-95 transition-transform hover:bg-secondary-container/50 duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Đăng xuất</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 md:ml-64 w-full max-w-2xl mx-auto pb-32">
+<header class="px-container-margin pt-xl pb-md sticky top-0 bg-background/90 backdrop-blur-md z-30">
+<div class="flex items-center justify-between bg-surface-container-high rounded-full px-md py-sm shadow-[0_2px_8px_rgba(249,115,22,0.04)]">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex items-center gap-xs cursor-pointer">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+<span class="font-title-md text-title-md text-on-surface">Tháng 10, 2023</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</header>
+<section class="px-container-margin mb-xl">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-container to-primary text-on-primary p-lg shadow-[0_8px_24px_rgba(249,115,22,0.25)]">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full translate-y-1/3 -translate-x-1/4 blur-xl"></div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<p class="font-label-md text-label-md text-on-primary/80 uppercase tracking-wider mb-xs">Tổng Chi Tiêu</p>
+<h2 class="font-price-display text-price-display mb-md">8.450.000 <span class="text-xl font-bold align-top">VNĐ</span></h2>
+<div class="flex items-center gap-sm bg-black/20 rounded-full px-sm py-base backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-body-md text-[14px]">Tăng 12% so với tháng trước</span>
+</div>
+</div>
+</div>
+</section>
+<section class="px-container-margin">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-title-md text-title-md text-on-surface">Giao dịch gần đây</h3>
+<button class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors">Xem tất cả</button>
+</div>
+<div class="mb-md">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-xs ml-base">Hôm nay</h4>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center bg-surface p-sm rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_4px_12px_rgba(249,115,22,0.08)] transition-shadow">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary-container mr-sm shrink-0">
+<span class="material-symbols-outlined material-symbols-fill">restaurant</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md font-semibold text-on-surface truncate">Ăn trưa nhà hàng</p>
+<p class="font-label-md text-[13px] text-on-surface-variant truncate">Ăn uống • 12:30</p>
+</div>
+<div class="text-right ml-sm shrink-0">
+<p class="font-body-md text-body-md font-bold text-secondary">- 350.000</p>
+</div>
+</div>
+<div class="flex items-center bg-surface p-sm rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_4px_12px_rgba(249,115,22,0.08)] transition-shadow">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary mr-sm shrink-0">
+<span class="material-symbols-outlined material-symbols-fill">local_cafe</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md font-semibold text-on-surface truncate">The Coffee House</p>
+<p class="font-label-md text-[13px] text-on-surface-variant truncate">Cà phê • 08:15</p>
+</div>
+<div class="text-right ml-sm shrink-0">
+<p class="font-body-md text-body-md font-bold text-secondary">- 65.000</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-md">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-xs ml-base">Hôm qua</h4>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center bg-surface p-sm rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_4px_12px_rgba(249,115,22,0.08)] transition-shadow">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary mr-sm shrink-0">
+<span class="material-symbols-outlined material-symbols-fill">shopping_bag</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md font-semibold text-on-surface truncate">Siêu thị VinMart</p>
+<p class="font-label-md text-[13px] text-on-surface-variant truncate">Mua sắm • 18:40</p>
+</div>
+<div class="text-right ml-sm shrink-0">
+<p class="font-body-md text-body-md font-bold text-secondary">- 1.250.000</p>
+</div>
+</div>
+<div class="flex items-center bg-surface p-sm rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.04)] border border-outline-variant/20 hover:shadow-[0_4px_12px_rgba(249,115,22,0.08)] transition-shadow">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary-fixed-dim mr-sm shrink-0">
+<span class="material-symbols-outlined material-symbols-fill">directions_car</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md font-semibold text-on-surface truncate">Đổ xăng</p>
+<p class="font-label-md text-[13px] text-on-surface-variant truncate">Di chuyển • 07:30</p>
+</div>
+<div class="text-right ml-sm shrink-0">
+<p class="font-body-md text-body-md font-bold text-secondary">- 100.000</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<button class="fixed bottom-[100px] right-container-margin w-14 h-14 bg-gradient-to-tr from-primary-container to-primary text-on-primary rounded-full shadow-[0_8px_24px_rgba(249,115,22,0.4)] flex items-center justify-center z-40 active:scale-90 transition-transform duration-200 md:hidden">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-xs pb-safe border-t border-outline-variant/20 bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-md shadow-[0_-4px_16px_rgba(249,115,22,0.08)] md:hidden rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 transition-all duration-150 w-16" href="#">
+<span class="material-symbols-outlined material-symbols-fill mb-1">payments</span>
+<span class="font-label-md text-[11px]">Chi Tiêu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-all duration-150 w-16" href="#">
+<span class="material-symbols-outlined mb-1">home_app_logo</span>
+<span class="font-label-md text-[11px] font-medium">Nhà</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-all duration-150 w-16" href="#">
+<span class="material-symbols-outlined mb-1">history</span>
+<span class="font-label-md text-[11px] font-medium">Lịch Sử</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-all duration-150 w-16" href="#">
+<span class="material-symbols-outlined mb-1">account_circle</span>
+<span class="font-label-md text-[11px] font-medium">Hồ Sơ</span>
+</a>
+</nav>
+</body></html>

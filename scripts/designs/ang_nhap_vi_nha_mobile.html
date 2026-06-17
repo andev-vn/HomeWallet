@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ví Nhà - Đăng nhập</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-dim": "#edd5cb",
+                        "surface": "#fff8f6",
+                        "secondary-fixed": "#eae1da",
+                        "primary-container": "#f97316",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-surface": "#251913",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-container": "#00a2f4",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#6a635e",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#1f1b17",
+                        "on-primary-container": "#582200",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container": "#ffeae0",
+                        "outline": "#8c7164",
+                        "on-primary-fixed": "#341100",
+                        "inverse-surface": "#3c2d26",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#f6ded3",
+                        "surface-container-low": "#fff1eb",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#fce3d9",
+                        "secondary-fixed-dim": "#cec5bf",
+                        "secondary-container": "#eae1da",
+                        "on-secondary-fixed-variant": "#4b4641",
+                        "surface-bright": "#fff8f6",
+                        "secondary": "#645d58",
+                        "surface-variant": "#f6ded3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "price-display": ["28px", { "lineHeight": "34px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface antialiased flex justify-center items-center min-h-screen">
+<!-- Mobile Container Wrapper -->
+<div class="w-full max-w-[400px] h-[884px] relative flex flex-col overflow-hidden bg-surface-container-low sm:rounded-[32px] sm:h-[800px] sm:shadow-2xl">
+<!-- Top Cute Illustration -->
+<div class="h-[45%] w-full relative shrink-0">
+<img alt="Illustration" class="w-full h-full object-cover" data-alt="A cute, modern 3D illustration of a happy Vietnamese family holding a giant glowing orange coin, representing household finance and shared prosperity. The style is warm, tactile, and highly rendered with soft lighting, set against a light peach background. The mood is joyful and accessible, moving away from cold banking aesthetics towards a friendly lifestyle approach." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuY1_BjEZ5ojeSuSBkozIMEDTnoATikfZyaWWXbGXXiS54eGC-DrYoULF7UMWymCSaTUXoWheuutcJRK8ylWCqN_er7rmzvSopjNXgDMVBQkWsLuuhhy97AocBTZA3oqwPirpyydCKwTehd6DPn_kwwCNk2T50OC4DzqLXyUBgYXb_vrWe6W6h7NCyy2N16PByXfHJ_w6wmwFRf-Fc5WPtqWyP1hvQ-F3eqfx244E3mfZMz5y3lWC-lmQHWRTwG48QTnJrKCdkUXAs"/>
+<!-- Gradient Overlay to blend into background -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+</div>
+<!-- Login Card -->
+<!-- Card occupies most of the screen, rounded 16px -->
+<div class="absolute bottom-0 left-0 w-full h-[65%] bg-surface-container-lowest rounded-t-[16px] shadow-[0_-12px_32px_rgba(249,115,22,0.06)] flex flex-col px-container-margin py-xl z-10 transition-transform duration-300">
+<!-- Handle indicator for tactile feel -->
+<div class="absolute top-sm left-1/2 -translate-x-1/2 w-12 h-1.5 bg-outline-variant/50 rounded-full"></div>
+<!-- Header -->
+<div class="text-center mb-lg mt-xs">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-container/10 text-primary mb-sm">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home_app_logo</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-base">Ví Nhà</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Quản lý chi tiêu gia đình</p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-md flex-1">
+<!-- Input Group -->
+<div class="flex flex-col gap-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="w-full bg-surface border border-outline-variant rounded-[12px] pl-10 pr-sm py-sm font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-all placeholder:text-outline/70" placeholder="Email hoặc số điện thoại" type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full bg-surface border border-outline-variant rounded-[12px] pl-10 pr-10 py-sm font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-all placeholder:text-outline/70" placeholder="Mật khẩu" type="password"/>
+<button class="absolute right-sm top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password -->
+<div class="flex justify-end">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors" href="#">
+                        Quên mật khẩu?
+                    </a>
+</div>
+<!-- Spacer -->
+<div class="flex-1"></div>
+<!-- Submit Button -->
+<!-- Nút Đăng nhập gradient to, pill-shaped -->
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-title-md text-title-md py-sm rounded-full shadow-[0_8px_16px_rgba(249,115,22,0.2)] hover:shadow-[0_12px_24px_rgba(249,115,22,0.3)] active:scale-95 transition-all duration-200 mt-auto" type="button">
+                    Đăng nhập
+                </button>
+<!-- Sign up prompt -->
+<p class="text-center font-body-md text-body-md text-on-surface-variant mt-sm pb-sm">
+                    Chưa có tài khoản? <a class="text-primary font-bold hover:underline" href="#">Đăng ký ngay</a>
+</p>
+</form>
+</div>
+</div>
+</body></html>
