@@ -139,7 +139,7 @@ export default function TransactionRow({
         </Box>
 
         {editable && (
-          <Box sx={{ display: 'flex', gap: 1.5, px: 3, py: 2, mt: 'auto' }}>
+          <Box sx={{ display: 'flex', gap: 1.5, px: 3, pt: 2, pb: 3.5, mt: 'auto' }}>
             <Button
               fullWidth
               variant="outlined"

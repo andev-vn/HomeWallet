@@ -48,7 +48,7 @@ export default function AddExpenseForm({
     isEdit ? updateExpense : addExpense,
     {},
   );
-  const [amount, setAmount] = useState(expense ? String(expense.amount) : '250000');
+  const [amount, setAmount] = useState(expense ? String(expense.amount) : '0');
   const [catId, setCatId] = useState<number | ''>(expense?.categoryId ?? categories[0]?.id ?? '');
   const [method, setMethod] = useState<'cash' | 'transfer'>(expense?.paymentMethod === 'transfer' ? 'transfer' : 'cash');
 
