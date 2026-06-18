@@ -209,9 +209,6 @@ export default function AppShell({
             <Typography sx={{ fontSize: 20, fontWeight: 800, color: c.primary }}>Ví Nhà</Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0 }}>
-            <Box sx={{ width: 40, height: 40, borderRadius: 999, bgcolor: c.surfaceContainer, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.onSurfaceVariant }}>
-              <Ms name="notifications" size={22} />
-            </Box>
             <Box component={Link} href="/profile" aria-label="Hồ sơ">
               <Avatar src={user.avatarUrl ?? undefined} sx={{ width: 40, height: 40 }}>
                 {user.name.charAt(0)}
