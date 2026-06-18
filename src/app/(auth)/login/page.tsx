@@ -62,10 +62,6 @@ export default function LoginPage() {
             Đăng ký ngay
           </Box>
         </Typography>
-
-        <Typography sx={{ textAlign: 'center', fontSize: 12, color: c.onSurfaceVariant, bgcolor: c.surfaceContainer, borderRadius: 2, py: 1 }}>
-          Demo: <b>botuan</b> / 123456 (chủ nhà) • <b>an</b> / 123456 (cá nhân)
-        </Typography>
       </Box>
     </Card>
   );
