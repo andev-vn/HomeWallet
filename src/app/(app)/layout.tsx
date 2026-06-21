@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 // Status bar trong app: tông frosted gần giống header (kính mờ).
 // Status bar chỉ nhận màu đặc nên đây là xấp xỉ gần nhất của header.
-export const viewport: Viewport = { themeColor: '#fdf3ee' };
+export const viewport: Viewport = { themeColor: '#fff8f6' };
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const [{ me }, categories] = await Promise.all([getContext(), getCategories()]);

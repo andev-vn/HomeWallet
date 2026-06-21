@@ -6,7 +6,7 @@ import { c } from '@/theme/colors';
 export const dynamic = 'force-dynamic';
 
 // Status bar màn đăng nhập: màu kem trùng nền.
-export const viewport: Viewport = { themeColor: '#fff8f6' };
+export const viewport: Viewport = { themeColor: '#fdf3ee' };
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
