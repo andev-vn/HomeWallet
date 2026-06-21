@@ -1,8 +1,12 @@
+import type { Viewport } from 'next';
 import Box from '@mui/material/Box';
 import { c } from '@/theme/colors';
 
 // Login/register/invite có form tương tác + useSearchParams → render động.
 export const dynamic = 'force-dynamic';
+
+// Status bar màn đăng nhập: màu kem trùng nền.
+export const viewport: Viewport = { themeColor: '#fff8f6' };
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (

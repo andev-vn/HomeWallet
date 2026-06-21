@@ -1,9 +1,14 @@
+import type { Viewport } from 'next';
 import AppShell from '@/components/layout/AppShell';
 import { getContext } from '@/features/households/queries';
 import { getCategories } from '@/features/expenses/queries';
 
 // Dữ liệu thay đổi qua Server Action → luôn lấy mới.
 export const dynamic = 'force-dynamic';
+
+// Status bar trong app: tông frosted gần giống header (kính mờ).
+// Status bar chỉ nhận màu đặc nên đây là xấp xỉ gần nhất của header.
+export const viewport: Viewport = { themeColor: '#fdf3ee' };
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const [{ me }, categories] = await Promise.all([getContext(), getCategories()]);
