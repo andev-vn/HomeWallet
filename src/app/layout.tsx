@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
@@ -15,6 +15,13 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: 'Ví Nhà — Quản lý chi tiêu gia đình',
   description: 'Ứng dụng quản lý chi tiêu cho cả gia đình',
+  appleWebApp: { capable: true, statusBarStyle: 'default', title: 'Ví Nhà' },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#f97316',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
