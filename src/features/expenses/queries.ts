@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import { db } from '@/db';
 import { categories, expenses, users, userCategoryBudgets, walletTopups } from '@/db/schema';
 import type { WalletTopup } from '@/db/schema';
@@ -62,9 +63,15 @@ export async function getMembersExpenses(userIds: number[]): Promise<EnrichedExp
     .orderBy(desc(expenses.occurredAt), desc(expenses.id)) as Promise<EnrichedExpense[]>;
 }
 
-export async function getCategories(): Promise<Category[]> {
-  return db.select().from(categories).orderBy(categories.id);
-}
+/**
+ * Danh mục là dữ liệu seed gần như bất biến → cache xuyên request (1 giờ).
+ * Gắn tag 'categories' để có thể revalidateTag khi đổi danh mục về sau.
+ */
+export const getCategories = unstable_cache(
+  async (): Promise<Category[]> => db.select().from(categories).orderBy(categories.id),
+  ['categories'],
+  { tags: ['categories'], revalidate: 3600 },
+);
 
 /** Các phiếu nạp tiền vào ví của user, mới nhất trước. */
 export async function getWalletTopups(userId: number): Promise<WalletTopup[]> {

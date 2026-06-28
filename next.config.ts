@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   },
   // Ẩn huy hiệu dev indicator của Next ở góc màn hình.
   devIndicators: false,
+  // Server Action mặc định giới hạn body 1MB; nâng lên để upload avatar tới 4MB lọt qua.
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
 };
 
 export default nextConfig;

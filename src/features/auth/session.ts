@@ -1,4 +1,5 @@
 import 'server-only';
+import { cache } from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createHmac } from 'node:crypto';
@@ -45,13 +46,17 @@ async function getSessionUserId(): Promise<number | null> {
   return Number(uid);
 }
 
-/** User hiện tại hoặc null. */
-export async function getCurrentUser(): Promise<User | null> {
+/**
+ * User hiện tại hoặc null.
+ * Bọc React cache() để mọi lần gọi trong cùng một request (layout + page + nhiều
+ * query) chỉ truy vấn DB một lần thay vì lặp lại từng round-trip Neon.
+ */
+export const getCurrentUser = cache(async (): Promise<User | null> => {
   const uid = await getSessionUserId();
   if (!uid) return null;
   const [user] = await db.select().from(users).where(eq(users.id, uid)).limit(1);
   return user ?? null;
-}
+});
 
 /** User hiện tại, hoặc chuyển hướng về /login. */
 export async function requireUser(): Promise<User> {

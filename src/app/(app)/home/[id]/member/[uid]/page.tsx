@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -44,9 +45,11 @@ export default async function MemberDetailPage({
 
   return (
     <Box sx={PAGE}>
-      <Box component="a" href={`/home/${householdId}?ym=${ymCur}`} sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
-        <Ms name="arrow_back" size={18} /> {view.household.name}
-      </Box>
+      <Link href={`/home/${householdId}?ym=${ymCur}`} style={{ textDecoration: 'none' }}>
+        <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
+          <Ms name="arrow_back" size={18} /> {view.household.name}
+        </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { md: 'center' }, flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

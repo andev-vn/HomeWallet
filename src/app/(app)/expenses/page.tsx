@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Ms from '@/components/Ms';
@@ -112,12 +113,15 @@ export default async function MyExpensesPage({
             const pct = budget > 0 ? Math.min(100, Math.round((cat.total / budget) * 100)) : 100;
             const over = budget > 0 && cat.total > budget;
             return (
-              <Box
+              <Link
                 key={String(cat.categoryId)}
-                component="a"
                 href={`/expenses/transactions?ym=${ym}${cat.categoryId ? `&cat=${cat.categoryId}` : ''}`}
+                style={{ textDecoration: 'none' }}
+              >
+              <Box
                 sx={{
                   display: 'block',
+                  color: 'inherit',
                   bgcolor: c.surfaceContainerLowest,
                   border: '1px solid rgba(224,192,177,0.4)',
                   borderRadius: 4,
@@ -157,6 +161,7 @@ export default async function MyExpensesPage({
                   </Typography>
                 )}
               </Box>
+              </Link>
             );
           })}
         </Box>
@@ -165,9 +170,11 @@ export default async function MyExpensesPage({
       {/* ===== Giao dịch trong tháng (5 gần nhất) ===== */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 4, mb: 2 }}>
         <Typography variant="h4">Giao dịch trong tháng</Typography>
-        <Box component="a" href={`/expenses/transactions?ym=${ym}`} sx={{ fontSize: 14, fontWeight: 600, color: c.primary, '&:hover': { textDecoration: 'underline' } }}>
-          Xem tất cả
-        </Box>
+        <Link href={`/expenses/transactions?ym=${ym}`} style={{ textDecoration: 'none' }}>
+          <Box sx={{ fontSize: 14, fontWeight: 600, color: c.primary, '&:hover': { textDecoration: 'underline' } }}>
+            Xem tất cả
+          </Box>
+        </Link>
       </Box>
 
       <TransactionList rows={recent} now={now} categories={cats} currentUserId={me.id} />

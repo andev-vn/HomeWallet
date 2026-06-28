@@ -1,5 +1,18 @@
 /** Các hàm format thuần, dùng được cả server lẫn client. */
 
+// Toàn app tính theo giờ Việt Nam (UTC+7, không có DST). Pin cứng để máy chủ
+// (Vercel chạy UTC) và trình duyệt cho ra cùng kết quả — tránh lệch tháng/ngày
+// ở ranh giới nửa đêm và tránh lỗi hydration.
+const VN_TZ = 'Asia/Ho_Chi_Minh';
+const VN_OFFSET_MS = 7 * 60 * 60 * 1000;
+
+/** Năm / tháng (0-based) / ngày theo giờ Việt Nam, bất kể TZ của môi trường chạy. */
+export function vnYMD(value: Date | string): { year: number; month0: number; day: number } {
+  const d = typeof value === 'string' ? new Date(value) : value;
+  const t = new Date(d.getTime() + VN_OFFSET_MS);
+  return { year: t.getUTCFullYear(), month0: t.getUTCMonth(), day: t.getUTCDate() };
+}
+
 const VND = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
   currency: 'VND',
@@ -26,19 +39,19 @@ export function formatCompact(amount: number): string {
 /** Date | string -> "11 thg 6, 2026" */
 export function formatDate(value: Date | string): string {
   const date = typeof value === 'string' ? new Date(value) : value;
-  return new Intl.DateTimeFormat('vi-VN', { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
+  return new Intl.DateTimeFormat('vi-VN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: VN_TZ }).format(date);
 }
 
 /** Date | string -> "08:15" (24h) */
 export function formatTime(value: Date | string): string {
   const date = typeof value === 'string' ? new Date(value) : value;
-  return new Intl.DateTimeFormat('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
+  return new Intl.DateTimeFormat('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: VN_TZ }).format(date);
 }
 
 /** Date | string -> "08:15:42" (24h, kèm giây) */
 export function formatTimeSec(value: Date | string): string {
   const date = typeof value === 'string' ? new Date(value) : value;
-  return new Intl.DateTimeFormat('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(date);
+  return new Intl.DateTimeFormat('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: VN_TZ }).format(date);
 }
 
 /** Date | string -> "11 thg 6, 2026 • 08:15:42" */
@@ -47,10 +60,13 @@ export function formatDateTime(value: Date | string): string {
   return `${formatDate(date)} • ${formatTimeSec(date)}`;
 }
 
-/** Nhãn ngày tương đối: "Hôm nay", "Hôm qua", hoặc ngày đầy đủ. */
+/** Nhãn ngày tương đối: "Hôm nay", "Hôm qua", hoặc ngày đầy đủ. (Theo giờ VN.) */
 export function formatDayLabel(date: Date, now: Date): string {
-  const atMidnight = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
-  const diffDays = Math.round((atMidnight(now) - atMidnight(date)) / 86_400_000);
+  const toDays = (d: Date) => {
+    const p = vnYMD(d);
+    return Date.UTC(p.year, p.month0, p.day) / 86_400_000;
+  };
+  const diffDays = Math.round(toDays(now) - toDays(date));
   if (diffDays === 0) return 'Hôm nay';
   if (diffDays === 1) return 'Hôm qua';
   return formatDate(date);
@@ -75,7 +91,8 @@ export function ymString(year: number, month0: number): string {
 export function parseYm(ym: string | undefined, now: Date): { year: number; month0: number } {
   const m = ym?.match(/^(\d{4})-(\d{1,2})$/);
   if (m) return { year: Number(m[1]), month0: Number(m[2]) - 1 };
-  return { year: now.getFullYear(), month0: now.getMonth() };
+  const p = vnYMD(now);
+  return { year: p.year, month0: p.month0 };
 }
 
 /** Dịch tháng đi `delta` tháng, chuẩn hoá năm. */

@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { db } from '@/db';
 import { households, householdMembers, users } from '@/db/schema';
 import { and, asc, eq, sql } from 'drizzle-orm';
@@ -31,7 +32,8 @@ export interface Context {
   members: MemberRow[]; // thành viên active của nhà đang xem
 }
 
-export async function getContext(): Promise<Context> {
+// Bọc cache(): layout và page cùng gọi getContext trong một request → chỉ chạy 1 lần.
+export const getContext = cache(async (): Promise<Context> => {
   const me = await requireUser();
 
   const memberships = await db
@@ -73,7 +75,7 @@ export async function getContext(): Promise<Context> {
   }
 
   return { me, myHouseholds, activeHousehold, isOwner, members };
-}
+});
 
 export interface HouseholdSummary {
   id: number;

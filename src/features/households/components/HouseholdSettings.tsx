@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Ms from '@/components/Ms';
 import { c } from '@/theme/colors';
-import { renameHousehold, deleteHousehold, type AuthState } from '@/features/auth/actions';
+import { renameHousehold, deleteHousehold } from '@/features/auth/actions';
 
 export default function HouseholdSettings({
   householdId,
@@ -30,14 +30,20 @@ export default function HouseholdSettings({
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const [renameOpen, setRenameOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [state, formAction, pending] = useActionState<AuthState, FormData>(renameHousehold, {});
+  const [pending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (state.ok) {
-      setRenameOpen(false);
-      router.refresh();
-    }
-  }, [state.ok, router]);
+  function handleRename(formData: FormData) {
+    setError(null);
+    startTransition(async () => {
+      const res = await renameHousehold({}, formData);
+      if (res.error) setError(res.error);
+      else {
+        setRenameOpen(false);
+        router.refresh();
+      }
+    });
+  }
 
   return (
     <>
@@ -59,11 +65,11 @@ export default function HouseholdSettings({
       {/* Đổi tên */}
       <Dialog open={renameOpen} onClose={() => setRenameOpen(false)} fullWidth maxWidth="xs">
         <DialogTitle>Đổi tên nhà</DialogTitle>
-        <Box component="form" action={formAction}>
+        <Box component="form" action={handleRename}>
           <input type="hidden" name="householdId" value={householdId} />
           <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField name="name" label="Tên nhà" defaultValue={currentName} autoFocus required fullWidth />
-            {state.error && <Alert severity="error">{state.error}</Alert>}
+            {error && <Alert severity="error">{error}</Alert>}
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setRenameOpen(false)} sx={{ color: c.onSurfaceVariant }}>Hủy</Button>

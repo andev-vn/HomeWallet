@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Ms from '@/components/Ms';
+import PullToRefresh from '@/components/PullToRefresh';
 import { c } from '@/theme/colors';
 import { logout } from '@/features/auth/actions';
 import { mainNav, footerNav, type NavItem } from './navItems';
@@ -64,6 +65,9 @@ export default function AppShell({
 
   return (
     <Box sx={{ minHeight: '100vh', width: '100%', overflowX: 'clip', bgcolor: c.background }}>
+      {/* Kéo xuống để reload (mobile/PWA) */}
+      <PullToRefresh />
+
       {/* ===== Sidebar (desktop) ===== */}
       <Box
         component="nav"

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
@@ -45,12 +46,11 @@ export default async function HouseholdsHubPage() {
         <>
           <Box sx={{ display: 'grid', gap: 2, gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', lg: 'repeat(3, 1fr)', xl: 'repeat(4, 1fr)' } }}>
             {houses.map((h) => (
+              <Link key={h.id} href={`/home/${h.id}`} style={{ textDecoration: 'none' }}>
               <Box
-                key={h.id}
-                component="a"
-                href={`/home/${h.id}`}
                 sx={{
                   display: 'block',
+                  color: 'inherit',
                   bgcolor: c.surfaceContainerLowest,
                   border: '1px solid rgba(224,192,177,0.4)',
                   borderRadius: 4,
@@ -75,6 +75,7 @@ export default async function HouseholdsHubPage() {
                   <Ms name="chevron_right" size={18} sx={{ ml: 'auto' }} />
                 </Box>
               </Box>
+              </Link>
             ))}
           </Box>
 

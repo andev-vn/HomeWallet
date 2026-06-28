@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -51,9 +52,11 @@ export default async function HouseholdDashboardPage({
 
   return (
     <Box sx={PAGE}>
-      <Box component="a" href="/home" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
-        <Ms name="arrow_back" size={18} /> Nhà của tôi
-      </Box>
+      <Link href="/home" style={{ textDecoration: 'none' }}>
+        <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
+          <Ms name="arrow_back" size={18} /> Nhà của tôi
+        </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { md: 'center' }, flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -136,11 +139,11 @@ export default async function HouseholdDashboardPage({
                 '&:hover': { transform: 'translateY(-2px)', boxShadow: '0 10px 28px rgba(249,115,22,0.14)' },
               }}
             >
-              <Box
-                component="a"
+              <Link
                 href={`/home/${householdId}/member/${m.userId}?ym=${ymCur}`}
-                sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2 }}
+                style={{ textDecoration: 'none' }}
               >
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, color: 'inherit' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   <Avatar src={m.avatarUrl ?? undefined} sx={{ width: 48, height: 48, flexShrink: 0, border: `2px solid ${c.surfaceContainer}` }}>
                     {m.name.charAt(0)}
@@ -158,6 +161,7 @@ export default async function HouseholdDashboardPage({
                 </Box>
                 <LinearProgress variant="determinate" value={pct} sx={{ height: 6, borderRadius: 999, bgcolor: c.surfaceVariant, '& .MuiLinearProgress-bar': { bgcolor: c.primaryContainer } }} />
               </Box>
+              </Link>
             </Box>
           );
         })}

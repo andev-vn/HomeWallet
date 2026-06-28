@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Ms from '@/components/Ms';
@@ -38,9 +39,11 @@ export default async function MonthTransactionsPage({
 
   return (
     <Box sx={PAGE}>
-      <Box component="a" href="/expenses" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
+      <Link href="/expenses" style={{ textDecoration: 'none', display: 'inline-flex' }}>
+      <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: 14, fontWeight: 600, color: c.onSurfaceVariant, mb: 2, '&:hover': { color: c.primary } }}>
         <Ms name="arrow_back" size={18} /> Tổng quan
       </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { md: 'flex-end' }, flexDirection: { xs: 'column', md: 'row' }, gap: 1, mb: 3 }}>
         <Box>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -15,7 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Ms from '@/components/Ms';
 import MoneyField from './MoneyField';
 import { c } from '@/theme/colors';
-import { addTopup, updateTopup, deleteTopup, type ActionState } from '../actions';
+import { addTopup, updateTopup, deleteTopup } from '../actions';
 import { formatCurrency, formatDate } from '@/utils/format';
 import type { WalletTopup } from '@/db/schema';
 
@@ -27,24 +27,31 @@ const toDateInput = (d: Date | string) => {
 
 function EditTopupDialog({ topup, onClose }: { topup: WalletTopup; onClose: () => void }) {
   const router = useRouter();
-  const [state, formAction, pending] = useActionState<ActionState, FormData>(updateTopup, {});
-  useEffect(() => {
-    if (state.ok) {
-      onClose();
-      router.refresh();
-    }
-  }, [state.ok, onClose, router]);
+  const [pending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
+
+  function handleSubmit(formData: FormData) {
+    setError(null);
+    startTransition(async () => {
+      const res = await updateTopup({}, formData);
+      if (res.error) setError(res.error);
+      else {
+        onClose();
+        router.refresh();
+      }
+    });
+  }
 
   return (
     <Dialog open onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle>Sửa phiếu nạp</DialogTitle>
-      <Box component="form" action={formAction}>
+      <Box component="form" action={handleSubmit}>
         <input type="hidden" name="id" value={topup.id} />
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <MoneyField name="amount" label="Số tiền" initial={topup.amount} required fullWidth />
           <TextField name="note" label="Ghi chú" defaultValue={topup.note ?? ''} fullWidth />
           <TextField name="occurredAt" type="date" label="Ngày" defaultValue={toDateInput(topup.occurredAt)} fullWidth slotProps={{ inputLabel: { shrink: true } }} />
-          {state.error && <Alert severity="error">{state.error}</Alert>}
+          {error && <Alert severity="error">{error}</Alert>}
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} sx={{ color: c.onSurfaceVariant }}>Hủy</Button>
@@ -57,26 +64,41 @@ function EditTopupDialog({ topup, onClose }: { topup: WalletTopup; onClose: () =
 
 export default function WalletManager({ topups, balance }: { topups: WalletTopup[]; balance: number }) {
   const router = useRouter();
-  const [state, formAction, pending] = useActionState<ActionState, FormData>(addTopup, {});
+  const [addPending, startAdd] = useTransition();
+  const [addError, setAddError] = useState<string | null>(null);
   const [formKey, setFormKey] = useState(0);
   const [editing, setEditing] = useState<WalletTopup | null>(null);
   const [deleting, setDeleting] = useState<WalletTopup | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [deletePending, startDelete] = useTransition();
+
+  function handleAdd(formData: FormData) {
+    setAddError(null);
+    startAdd(async () => {
+      const res = await addTopup({}, formData);
+      if (res.error) setAddError(res.error);
+      else {
+        setFormKey((k) => k + 1); // reset các ô nhập sau khi thêm
+        router.refresh();
+      }
+    });
+  }
 
   function confirmDelete() {
     if (!deleting) return;
     const fd = new FormData();
     fd.set('id', String(deleting.id));
+    setDeleteError(null);
     startDelete(async () => {
-      await deleteTopup(fd);
+      const res = await deleteTopup(fd);
+      if (res?.error) {
+        setDeleteError(res.error);
+        return;
+      }
       setDeleting(null);
       router.refresh();
     });
   }
-
-  useEffect(() => {
-    if (state.ok) setFormKey((k) => k + 1); // reset các ô nhập sau khi thêm
-  }, [state.ok]);
 
   return (
     <Box>
@@ -89,15 +111,15 @@ export default function WalletManager({ topups, balance }: { topups: WalletTopup
       </Box>
 
       {/* Thêm phiếu */}
-      <Box key={formKey} component="form" action={formAction} sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap', alignItems: 'flex-start', mb: 1 }}>
+      <Box key={formKey} component="form" action={handleAdd} sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap', alignItems: 'flex-start', mb: 1 }}>
         <MoneyField name="amount" label="Thêm tiền" placeholder="0" size="small" sx={{ flex: '1 1 140px' }} />
         <TextField name="note" label="Ghi chú" placeholder="VD: Lương tháng 6" size="small" sx={{ flex: '2 1 200px' }} />
         <TextField name="occurredAt" type="date" label="Ngày" defaultValue={toDateInput(new Date())} size="small" sx={{ flex: '1 1 150px' }} slotProps={{ inputLabel: { shrink: true } }} />
-        <Button type="submit" variant="contained" disabled={pending} startIcon={<Ms name="add" />} sx={{ height: 40 }}>
+        <Button type="submit" variant="contained" disabled={addPending} startIcon={<Ms name="add" />} sx={{ height: 40 }}>
           Thêm
         </Button>
       </Box>
-      {state.error && <Alert severity="error" sx={{ mb: 1 }}>{state.error}</Alert>}
+      {addError && <Alert severity="error" sx={{ mb: 1 }}>{addError}</Alert>}
 
       {/* Danh sách phiếu */}
       {topups.length === 0 ? (
@@ -124,10 +146,15 @@ export default function WalletManager({ topups, balance }: { topups: WalletTopup
       {editing && <EditTopupDialog topup={editing} onClose={() => setEditing(null)} />}
 
       {/* Xác nhận xóa */}
-      <Dialog open={!!deleting} onClose={() => setDeleting(null)}>
+      <Dialog open={!!deleting} onClose={() => { setDeleting(null); setDeleteError(null); }}>
         <DialogTitle>Xóa phiếu nạp?</DialogTitle>
+        {deleteError && (
+          <DialogContent sx={{ pt: 0 }}>
+            <Alert severity="error">{deleteError}</Alert>
+          </DialogContent>
+        )}
         <DialogActions>
-          <Button onClick={() => setDeleting(null)} disabled={deletePending} sx={{ color: c.onSurfaceVariant }}>Hủy</Button>
+          <Button onClick={() => { setDeleting(null); setDeleteError(null); }} disabled={deletePending} sx={{ color: c.onSurfaceVariant }}>Hủy</Button>
           <Button color="error" variant="contained" onClick={confirmDelete} disabled={deletePending}>
             {deletePending ? 'Đang xóa...' : 'Xóa'}
           </Button>

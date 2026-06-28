@@ -1,9 +1,13 @@
 import type { EnrichedExpense } from './queries';
+import { vnYMD } from '@/utils/format';
 
 export const sum = (rows: EnrichedExpense[]) => rows.reduce((t, r) => t + r.amount, 0);
 
 export const inMonth = (rows: EnrichedExpense[], year: number, month0: number) =>
-  rows.filter((r) => r.occurredAt.getFullYear() === year && r.occurredAt.getMonth() === month0);
+  rows.filter((r) => {
+    const p = vnYMD(r.occurredAt);
+    return p.year === year && p.month0 === month0;
+  });
 
 export interface MemberSpend {
   userId: number;
@@ -60,11 +64,11 @@ export interface DayGroup {
 export function byDay(rows: EnrichedExpense[]): DayGroup[] {
   const map = new Map<string, DayGroup>();
   for (const r of rows) {
-    const d = r.occurredAt;
-    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    const p = vnYMD(r.occurredAt);
+    const key = `${p.year}-${p.month0}-${p.day}`;
     const cur =
       map.get(key) ??
-      { key, date: new Date(d.getFullYear(), d.getMonth(), d.getDate()), total: 0, rows: [] };
+      { key, date: new Date(Date.UTC(p.year, p.month0, p.day)), total: 0, rows: [] };
     cur.total += r.amount;
     cur.rows.push(r);
     map.set(key, cur);
@@ -82,8 +86,7 @@ export interface MonthGroup {
 export function byMonth(rows: EnrichedExpense[]): MonthGroup[] {
   const map = new Map<string, MonthGroup>();
   for (const r of rows) {
-    const y = r.occurredAt.getFullYear();
-    const m = r.occurredAt.getMonth();
+    const { year: y, month0: m } = vnYMD(r.occurredAt);
     const key = `${y}-${m}`;
     const cur = map.get(key) ?? { year: y, month0: m, total: 0, rows: [] };
     cur.total += r.amount;

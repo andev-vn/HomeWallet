@@ -79,10 +79,19 @@ export async function updateProfile(_prev: AuthState, formData: FormData): Promi
     if (!file.type.startsWith('image/')) return { error: 'File ảnh không hợp lệ.' };
     if (file.size > 4 * 1024 * 1024) return { error: 'Ảnh tối đa 4MB.' };
 
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return { error: 'Chưa cấu hình lưu trữ ảnh (thiếu BLOB_READ_WRITE_TOKEN). Liên hệ quản trị.' };
+    }
+
     const ext = (file.type.split('/')[1] || 'png').replace('jpeg', 'jpg').replace('svg+xml', 'svg');
     // Lưu lên Vercel Blob (CDN công khai). Tên kèm timestamp để mỗi lần đổi là URL mới.
-    const blob = await put(`avatars/avatar-${me.id}-${Date.now()}.${ext}`, file, { access: 'public' });
-    fields.avatarUrl = blob.url;
+    try {
+      const blob = await put(`avatars/avatar-${me.id}-${Date.now()}.${ext}`, file, { access: 'public' });
+      fields.avatarUrl = blob.url;
+    } catch (e) {
+      console.error('Avatar upload failed:', e);
+      return { error: 'Tải ảnh lên thất bại. Vui lòng thử lại.' };
+    }
   }
 
   await db.update(users).set(fields).where(eq(users.id, me.id));
